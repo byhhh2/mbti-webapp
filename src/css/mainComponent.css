@@ -1,0 +1,36 @@
+.mainComponent {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@keyframes up {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-124px);
+  }
+}
+
+.question_mark {
+  animation: up 5s 200ms infinite;
+  position: fixed;
+  margin-bottom: 100px;
+  font-size: 40px;
+  color: #875611;
+  font-weight: bold;
+}
