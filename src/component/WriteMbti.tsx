@@ -1,24 +1,78 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
+import { useDispatchContext } from '../context/Context';
+import { Link } from 'react-router-dom';
+
+type SelectMbtiProps = {
+  MBTI: mbtiType;
+  setMBTI: (arg: any) => void;
+};
+
+type mbtiType = {
+  energy: string;
+  recognize: string;
+  judgment: string;
+  lifestyle: string;
+};
 
 function WriteMbti() {
+  const dispatch = useDispatchContext();
+
+  const setMbti = (mbti: String) => dispatch({ type: 'SET_MBTI', mbti: mbti });
+
+  const [MBTI, setMBTI] = useState<mbtiType>({
+    energy: '',
+    recognize: '',
+    judgment: '',
+    lifestyle: '',
+  });
+
+  const clickNext = () => {
+    setMbti(MBTI.energy + MBTI.recognize + MBTI.judgment + MBTI.lifestyle);
+  };
+
   return (
     <div css={container}>
       <div>
         <p css={text}>당신의 MBTI를</p>
         <p css={text}>입력하세요 🔨</p>
       </div>
-      <SelectMbti />
+      <SelectMbti MBTI={MBTI} setMBTI={setMBTI} />
       <div>
-        <button css={ok_btn}>NEXT</button>
+        <Link to="/question">
+          <button css={ok_btn} onClick={clickNext}>
+            NEXT
+          </button>
+        </Link>
       </div>
     </div>
   );
 }
 
-const SelectMbti = () => {
+const SelectMbti = ({ MBTI, setMBTI }: SelectMbtiProps) => {
   const createSelect = (arr: String[]) => {
+    const inputEventHandler = (value: string) => {
+      switch (value) {
+        case 'E':
+        case 'I':
+          setMBTI({ ...MBTI, energy: value });
+          return;
+        case 'S':
+        case 'N':
+          setMBTI({ ...MBTI, recognize: value });
+          return;
+        case 'T':
+        case 'F':
+          setMBTI({ ...MBTI, judgment: value });
+          return;
+        case 'J':
+        case 'P':
+          setMBTI({ ...MBTI, lifestyle: value });
+          return;
+      }
+    };
+
     return arr.map((data: String, index: number) => (
       <div css={select_row} key={index}>
         <div>
@@ -27,6 +81,9 @@ const SelectMbti = () => {
             id={`${data.split(' ')[0]}`}
             name={`${data.split(' ')[2]}`}
             value={`${data.split(' ')[0]}`}
+            onChange={(event) => {
+              inputEventHandler(event.target.value);
+            }}
             css={select_radio_btn}
           />
           <label htmlFor={`${data.split(' ')[0]}`} css={select_label}>
@@ -40,6 +97,9 @@ const SelectMbti = () => {
             id={`${data.split(' ')[1]}`}
             name={`${data.split(' ')[2]}`}
             value={`${data.split(' ')[1]}`}
+            onChange={(event) => {
+              inputEventHandler(event.target.value);
+            }}
             css={select_radio_btn}
           />
           <label htmlFor={`${data.split(' ')[1]}`} css={select_label}>
@@ -97,6 +157,9 @@ const select_container = css`
 
   @media (min-width: 1024px) {
     width: 70%;
+  }
+  @media (min-width: 1440px) {
+    width: 50%;
   }
 `;
 
