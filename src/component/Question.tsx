@@ -10,16 +10,16 @@ function Question() {
         <p>약속이 취소된다면 나는?</p>
       </div>
       <div css={answer_div}>
-        <Link to="/statistics">
+        <Link to="/statistics/1">
           <button css={answer_btn}>너무 행복하다.</button>
         </Link>
-        <Link to="/statistics">
+        <Link to="/statistics/2">
           <button css={answer_btn}>기분은 좋지만 심심하다.</button>
         </Link>
-        <Link to="/statistics">
+        <Link to="/statistics/3">
           <button css={answer_btn}>약속 깬 친구에게 서운하다.</button>
         </Link>
-        <Link to="/statistics">
+        <Link to="/statistics/4">
           <button css={answer_btn}>진심으로 화가 난다.</button>
         </Link>
       </div>

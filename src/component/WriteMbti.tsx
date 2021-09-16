@@ -40,11 +40,16 @@ function WriteMbti() {
       </div>
       <SelectMbti MBTI={MBTI} setMBTI={setMBTI} />
       <div>
-        <Link to="/question">
-          <button css={ok_btn} onClick={clickNext}>
-            NEXT
-          </button>
-        </Link>
+        {(MBTI.energy + MBTI.recognize + MBTI.judgment + MBTI.lifestyle)
+          .length === 4 ? (
+          <Link to="/question">
+            <button css={ok_btn} onClick={clickNext}>
+              NEXT
+            </button>
+          </Link>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

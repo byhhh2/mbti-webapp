@@ -20,7 +20,7 @@ function App() {
             <Route path="/" exact component={MainComponent} />
             <Route path="/write" component={WriteMbti} />
             <Route path="/question" component={Question} />
-            <Route path="/statistics" component={Statistics} />
+            <Route path="/statistics/:num" component={Statistics} />
           </Switch>
         </BrowserRouter>
       </Provider>
