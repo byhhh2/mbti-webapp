@@ -5,6 +5,7 @@ import { useStateContext } from '../context/Context';
 import question_img from '../images/question.png';
 import styled from 'styled-components';
 import Comment from './Comment';
+import { Link } from 'react-router-dom';
 
 function Statistics({ match }: any) {
   const state = useStateContext();
@@ -89,7 +90,9 @@ function Statistics({ match }: any) {
       </div>
       <div css={btn_container}>
         <button css={ok_btn}>NEXT</button>
-        <button css={ok_btn}>질문 추가하기</button>
+        <Link to="/add" css={link}>
+          <button css={ok_btn}>질문 추가하기</button>
+        </Link>
       </div>
       <div css={comment_container}>
         <Comment />
@@ -446,6 +449,10 @@ const comment_container = css`
   border-color: rgba(0, 0, 0, 0.1);
   box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.05);
   background-color: white;
+`;
+
+const link = css`
+  text-decoration: none;
 `;
 
 export default Statistics;

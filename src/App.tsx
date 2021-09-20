@@ -10,6 +10,7 @@ import MainComponent from './component/MainComponent';
 import WriteMbti from './component/WriteMbti';
 import Question from './component/Question';
 import Statistics from './component/Statistics';
+import AddQuestion from './component/AddQuestion';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/write" component={WriteMbti} />
             <Route path="/question" component={Question} />
             <Route path="/statistics/:num" component={Statistics} />
+            <Route path="/add" component={AddQuestion} />
           </Switch>
         </BrowserRouter>
       </Provider>
