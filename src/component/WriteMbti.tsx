@@ -30,6 +30,10 @@ function WriteMbti() {
 
   const clickNext = () => {
     setMbti(MBTI.energy + MBTI.recognize + MBTI.judgment + MBTI.lifestyle);
+    localStorage.setItem(
+      'mbti',
+      MBTI.energy + MBTI.recognize + MBTI.judgment + MBTI.lifestyle
+    );
   };
 
   return (

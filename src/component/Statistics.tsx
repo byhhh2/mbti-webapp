@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { useStateContext } from '../context/Context';
 import question_img from '../images/question.png';
@@ -8,6 +8,11 @@ import Comment from './Comment';
 
 function Statistics({ match }: any) {
   const state = useStateContext();
+  const [mbti, setMbti] = useState<String | null>(state.mbti);
+
+  useEffect(() => {
+    setMbti(localStorage.getItem('mbti'));
+  }, []);
 
   const selectedStyle = (num: string) => {
     return match.params.num === num
@@ -21,7 +26,7 @@ function Statistics({ match }: any) {
   return (
     <div css={container}>
       <div css={title_div}>
-        <p css={title_text_left}>{state.mbti} 는 </p>
+        <p css={title_text_left}>{mbti} 는 </p>
         <p css={title_text_right}>무슨 생각을 할까?</p>
       </div>
       <img src={question_img} css={img_top} alt="question" />
